@@ -7,7 +7,6 @@ import it.davidenastri.critter.pet.PetDTO;
 import it.davidenastri.critter.pet.PetType;
 import it.davidenastri.critter.schedule.ScheduleController;
 import it.davidenastri.critter.schedule.ScheduleDTO;
-import com.udacity.jdnd.course3.critter.user.*;
 import it.davidenastri.critter.user.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
