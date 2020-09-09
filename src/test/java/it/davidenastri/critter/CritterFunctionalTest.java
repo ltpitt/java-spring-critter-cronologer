@@ -2,12 +2,16 @@ package it.davidenastri.critter;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import it.davidenastri.critter.controller.UserController;
 import it.davidenastri.critter.pet.PetController;
 import it.davidenastri.critter.pet.PetDTO;
 import it.davidenastri.critter.pet.PetType;
 import it.davidenastri.critter.schedule.ScheduleController;
 import it.davidenastri.critter.schedule.ScheduleDTO;
-import it.davidenastri.critter.user.*;
+import it.davidenastri.critter.user.CustomerDTO;
+import it.davidenastri.critter.user.EmployeeDTO;
+import it.davidenastri.critter.user.EmployeeRequestDTO;
+import it.davidenastri.critter.user.EmployeeSkill;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
