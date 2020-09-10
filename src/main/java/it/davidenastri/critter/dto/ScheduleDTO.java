@@ -1,6 +1,6 @@
-package it.davidenastri.critter.schedule;
+package it.davidenastri.critter.dto;
 
-import it.davidenastri.critter.user.EmployeeSkill;
+import it.davidenastri.critter.entity.EmployeeSkill;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,4 +1,4 @@
-package it.davidenastri.critter.pet;
+package it.davidenastri.critter.entity;
 
 /**
  * A example list of pet type metadata that could be included on a request to create a pet.

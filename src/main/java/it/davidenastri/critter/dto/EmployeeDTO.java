@@ -1,4 +1,6 @@
-package it.davidenastri.critter.user;
+package it.davidenastri.critter.dto;
+
+import it.davidenastri.critter.entity.EmployeeSkill;
 
 import java.time.DayOfWeek;
 import java.util.Set;

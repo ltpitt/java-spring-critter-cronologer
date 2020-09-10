@@ -1,4 +1,6 @@
-package it.davidenastri.critter.pet;
+package it.davidenastri.critter.dto;
+
+import it.davidenastri.critter.entity.PetType;
 
 import java.time.LocalDate;
 

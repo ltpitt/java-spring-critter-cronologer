@@ -1,4 +1,4 @@
-package it.davidenastri.critter.user;
+package it.davidenastri.critter.dto;
 
 import java.util.List;
 

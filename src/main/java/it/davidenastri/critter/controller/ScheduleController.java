@@ -1,5 +1,6 @@
-package it.davidenastri.critter.schedule;
+package it.davidenastri.critter.controller;
 
+import it.davidenastri.critter.dto.ScheduleDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
