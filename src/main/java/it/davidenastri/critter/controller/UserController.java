@@ -4,6 +4,7 @@ import it.davidenastri.critter.dto.CustomerDTO;
 import it.davidenastri.critter.dto.EmployeeDTO;
 import it.davidenastri.critter.dto.EmployeeRequestDTO;
 import it.davidenastri.critter.entity.Customer;
+import it.davidenastri.critter.entity.Pet;
 import it.davidenastri.critter.repository.CustomerRepository;
 import it.davidenastri.critter.service.CustomerService;
 import org.springframework.beans.BeanUtils;
@@ -40,7 +41,7 @@ public class UserController {
 
     @GetMapping("/customer")
     public List<CustomerDTO> getAllCustomers() {
-        List<Customer> customers = customerService.getAllCustomers();
+        List<Customer> customers = customerService.findAll();
         return customers.stream().map(this::getCustomerDTO).collect(Collectors.toList());
     }
 
@@ -72,6 +73,8 @@ public class UserController {
     private CustomerDTO getCustomerDTO(Customer customer) {
         CustomerDTO customerDTO = new CustomerDTO();
         BeanUtils.copyProperties(customer, customerDTO);
+        List<Long> petIds = customer.getPets().stream().map(Pet::getId).collect(Collectors.toList());
+        customerDTO.setPetIds(petIds);
         return customerDTO;
     }
 

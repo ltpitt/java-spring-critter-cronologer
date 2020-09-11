@@ -2,6 +2,7 @@ package it.davidenastri.critter.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,7 @@ public class Customer implements Serializable {
 
     private String notes;
 
-    @OneToMany(targetEntity = Pet.class)
+    @OneToMany(targetEntity = Pet.class, cascade = CascadeType.ALL)
     private List<Pet> pets;
 
     public void addPet(Pet pet) {
@@ -26,11 +27,7 @@ public class Customer implements Serializable {
     }
 
     public Customer() {
-    }
-
-    public Customer(String name, String phoneNumber) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
+        this.pets = new ArrayList<>();
     }
 
     public Long getId() {
@@ -71,6 +68,10 @@ public class Customer implements Serializable {
 
     public void setPets(List<Pet> pets) {
         this.pets = pets;
+    }
+
+    public void insertPet(Pet pet) {
+        pets.add(pet);
     }
 
 }

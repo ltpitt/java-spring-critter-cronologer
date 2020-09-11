@@ -4,7 +4,6 @@ import it.davidenastri.critter.dto.PetDTO;
 import it.davidenastri.critter.entity.Pet;
 import it.davidenastri.critter.service.PetService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,34 +16,41 @@ import java.util.stream.Collectors;
 @RequestMapping("/pet")
 public class PetController {
 
-    @Autowired
-    PetService petService;
+    private PetService petService;
+
+    public PetController(PetService petService) {
+        this.petService = petService;
+    }
 
     @PostMapping
     public PetDTO savePet(@RequestBody PetDTO petDTO) {
         Pet pet = new Pet();
-        BeanUtils.copyProperties(petDTO, pet);
+        pet.setType(petDTO.getType());
+        pet.setName(petDTO.getName());
+        pet.setBirthDate(petDTO.getBirthDate());
+        pet.setNotes(petDTO.getNotes());
         return getPetDTO(petService.savePet(pet, petDTO.getOwnerId()));
     }
 
     @GetMapping("/{petId}")
     public PetDTO getPet(@PathVariable long petId) {
-        throw new UnsupportedOperationException();
+        return getPetDTO(petService.findById(petId));
     }
 
     @GetMapping
     public List<PetDTO> getPets() {
-        return petService.getAllPets().stream().map(this::getPetDTO).collect(Collectors.toList());
+        return petService.findAll().stream().map(this::getPetDTO).collect(Collectors.toList());
     }
 
     @GetMapping("/owner/{ownerId}")
     public List<PetDTO> getPetsByOwner(@PathVariable long ownerId) {
-        throw new UnsupportedOperationException();
+        return petService.getPetsByOwner(ownerId).stream().map(this::getPetDTO).collect(Collectors.toList());
     }
 
     private PetDTO getPetDTO(Pet pet) {
         PetDTO petDTO = new PetDTO();
         BeanUtils.copyProperties(pet, petDTO);
+        petDTO.setOwnerId(pet.getCustomer().getId());
         return petDTO;
     }
 
