@@ -1,7 +1,5 @@
 package it.davidenastri.critter.entity;
 
-import it.davidenastri.critter.user.EmployeeSkill;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.DayOfWeek;
