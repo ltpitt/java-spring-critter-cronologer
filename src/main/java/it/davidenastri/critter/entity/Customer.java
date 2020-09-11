@@ -2,6 +2,7 @@ package it.davidenastri.critter.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table
@@ -17,12 +18,12 @@ public class Customer implements Serializable {
 
     private String notes;
 
-//    @OneToMany(targetEntity = Pet.class)
-//    private List<Pet> pets;
-//
-//    public void insertPet(Pet pet) {
-//        pets.add(pet);
-//    }
+    @OneToMany(targetEntity = Pet.class)
+    private List<Pet> pets;
+
+    public void addPet(Pet pet) {
+        pets.add(pet);
+    }
 
     public Customer() {
     }
@@ -64,12 +65,12 @@ public class Customer implements Serializable {
         this.notes = notes;
     }
 
-//    public List<Pet> getPets() {
-//        return pets;
-//    }
-//
-//    public void setPets(List<Pet> pets) {
-//        this.pets = pets;
-//    }
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
+    }
 
 }

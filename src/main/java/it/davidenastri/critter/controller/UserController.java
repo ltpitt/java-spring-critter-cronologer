@@ -1,10 +1,11 @@
 package it.davidenastri.critter.controller;
 
+import it.davidenastri.critter.dto.CustomerDTO;
+import it.davidenastri.critter.dto.EmployeeDTO;
+import it.davidenastri.critter.dto.EmployeeRequestDTO;
 import it.davidenastri.critter.entity.Customer;
+import it.davidenastri.critter.repository.CustomerRepository;
 import it.davidenastri.critter.service.CustomerService;
-import it.davidenastri.critter.user.CustomerDTO;
-import it.davidenastri.critter.user.EmployeeDTO;
-import it.davidenastri.critter.user.EmployeeRequestDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,11 +26,16 @@ import java.util.stream.Collectors;
 public class UserController {
 
     @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
     private CustomerService customerService;
 
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO) {
-        throw new UnsupportedOperationException();
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(customerDTO, customer);
+        return getCustomerDTO(customerRepository.save(customer));
     }
 
     @GetMapping("/customer")
