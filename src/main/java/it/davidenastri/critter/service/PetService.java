@@ -25,6 +25,11 @@ public class PetService {
         return petRepository.findById(petId).orElseThrow(() -> new ResourceNotFoundException("Pet not found, ID: " + petId));
     }
 
+    public Customer findOwnerByPetId(long petId) {
+        Pet pet = petRepository.findById(petId).orElseThrow(() -> new ResourceNotFoundException("Pet not found, ID: " + petId));
+        return pet.getCustomer();
+    }
+
     public Pet savePet(Pet pet, long ownerId) {
         Customer customer = customerRepository.getOne(ownerId);
         pet.setCustomer(customer);

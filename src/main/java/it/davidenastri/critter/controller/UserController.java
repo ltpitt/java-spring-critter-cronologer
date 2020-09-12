@@ -5,8 +5,8 @@ import it.davidenastri.critter.dto.EmployeeDTO;
 import it.davidenastri.critter.dto.EmployeeRequestDTO;
 import it.davidenastri.critter.entity.Customer;
 import it.davidenastri.critter.entity.Pet;
-import it.davidenastri.critter.repository.CustomerRepository;
 import it.davidenastri.critter.service.CustomerService;
+import it.davidenastri.critter.service.PetService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class UserController {
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private PetService petService;
 
     @Autowired
     private CustomerService customerService;
@@ -36,7 +36,7 @@ public class UserController {
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO) {
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerDTO, customer);
-        return getCustomerDTO(customerRepository.save(customer));
+        return getCustomerDTO(customerService.save(customer));
     }
 
     @GetMapping("/customer")
@@ -47,7 +47,7 @@ public class UserController {
 
     @GetMapping("/customer/pet/{petId}")
     public CustomerDTO getOwnerByPet(@PathVariable long petId){
-        throw new UnsupportedOperationException();
+        return getCustomerDTO(petService.findOwnerByPetId(petId));
     }
 
     @PostMapping("/employee")
