@@ -4,7 +4,6 @@ import it.davidenastri.critter.entity.Customer;
 import it.davidenastri.critter.exception.ResourceNotFoundException;
 import it.davidenastri.critter.repository.CustomerRepository;
 import it.davidenastri.critter.repository.PetRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,11 +13,14 @@ import java.util.List;
 @Transactional
 public class CustomerService {
 
-    @Autowired
     private CustomerRepository customerRepository;
 
-    @Autowired
     private PetRepository petRepository;
+
+    public CustomerService(CustomerRepository customerRepository, PetRepository petRepository) {
+        this.customerRepository = customerRepository;
+        this.petRepository = petRepository;
+    }
 
     public Customer findById(long customerId) {
         return customerRepository.findById(customerId).orElseThrow(() -> new ResourceNotFoundException("Customer not found, ID: " + customerId));

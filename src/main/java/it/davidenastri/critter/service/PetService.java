@@ -5,7 +5,6 @@ import it.davidenastri.critter.entity.Pet;
 import it.davidenastri.critter.exception.ResourceNotFoundException;
 import it.davidenastri.critter.repository.CustomerRepository;
 import it.davidenastri.critter.repository.PetRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,11 +14,14 @@ import java.util.List;
 @Transactional
 public class PetService {
 
-    @Autowired
     private CustomerRepository customerRepository;
 
-    @Autowired
     private PetRepository petRepository;
+
+    public PetService(CustomerRepository customerRepository, PetRepository petRepository) {
+        this.customerRepository = customerRepository;
+        this.petRepository = petRepository;
+    }
 
     public Pet findById(long petId) {
         return petRepository.findById(petId).orElseThrow(() -> new ResourceNotFoundException("Pet not found, ID: " + petId));
@@ -50,4 +52,5 @@ public class PetService {
     public List<Pet> findAll() {
         return petRepository.findAll();
     }
+
 }

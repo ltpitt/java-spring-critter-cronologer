@@ -4,11 +4,12 @@ import it.davidenastri.critter.dto.CustomerDTO;
 import it.davidenastri.critter.dto.EmployeeDTO;
 import it.davidenastri.critter.dto.EmployeeRequestDTO;
 import it.davidenastri.critter.entity.Customer;
+import it.davidenastri.critter.entity.Employee;
 import it.davidenastri.critter.entity.Pet;
 import it.davidenastri.critter.service.CustomerService;
+import it.davidenastri.critter.service.EmployeeService;
 import it.davidenastri.critter.service.PetService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
@@ -26,11 +27,17 @@ import java.util.stream.Collectors;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
     private PetService petService;
 
-    @Autowired
     private CustomerService customerService;
+
+    private EmployeeService employeeService;
+
+    public UserController(PetService petService, CustomerService customerService, EmployeeService employeeService) {
+        this.petService = petService;
+        this.customerService = customerService;
+        this.employeeService = employeeService;
+    }
 
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO) {
@@ -52,22 +59,24 @@ public class UserController {
 
     @PostMapping("/employee")
     public EmployeeDTO saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        throw new UnsupportedOperationException();
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDTO, employee);
+        return getEmployeeDTO(employeeService.save(employee));
     }
 
     @PostMapping("/employee/{employeeId}")
     public EmployeeDTO getEmployee(@PathVariable long employeeId) {
-        throw new UnsupportedOperationException();
+        return getEmployeeDTO(employeeService.findById(employeeId));
     }
 
     @PutMapping("/employee/{employeeId}")
     public void setAvailability(@RequestBody Set<DayOfWeek> daysAvailable, @PathVariable long employeeId) {
-        throw new UnsupportedOperationException();
+        employeeService.setAvailability(daysAvailable, employeeId);
     }
 
     @GetMapping("/employee/availability")
     public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
-        throw new UnsupportedOperationException();
+        return employeeService.findEmployeesForService(employeeDTO).stream().map(this::getEmployeeDTO).collect(Collectors.toList());
     }
 
     private CustomerDTO getCustomerDTO(Customer customer) {
@@ -77,5 +86,12 @@ public class UserController {
         customerDTO.setPetIds(petIds);
         return customerDTO;
     }
+
+    private EmployeeDTO getEmployeeDTO(Employee employee) {
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+        BeanUtils.copyProperties(employee, employeeDTO);
+        return employeeDTO;
+    }
+
 
 }
