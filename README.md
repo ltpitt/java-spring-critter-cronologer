@@ -1,3 +1,10 @@
+[![build](https://github.com/ltpitt/java-spring-critter-cronologer/workflows/build/badge.svg)](https://github.com/ltpitt/java-spring-critter-cronologer/actions)
+[![GitHub Issues](https://img.shields.io/github/issues-raw/ltpitt/java-spring-critter-cronologer)](https://github.com/ltpitt/java-spring-critter-cronologer/issues)
+[![Total Commits](https://img.shields.io/github/last-commit/ltpitt/java-spring-critter-cronologer)](https://github.com/ltpitt/java-spring-critter-cronologer/commits)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/4w/ltpitt/java-spring-critter-cronologer?foo=bar)](https://github.com/ltpitt/java-spring-critter-cronologer/commits)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ltpitt/java-spring-critter-cronologer/blob/master/LICENSE)
+![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
+
 # Java Spring Boot Critter Cronologer
 > Critter Chronologer is an API that provides a scheduling interface for a small business that takes care of animals. This Spring Boot project will allow users to create pets, owners, and employees, and then schedule events for employees to provide services for pets.
 
