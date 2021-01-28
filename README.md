@@ -1,4 +1,5 @@
 [![build](https://github.com/ltpitt/java-spring-critter-cronologer/workflows/build/badge.svg)](https://github.com/ltpitt/java-spring-critter-cronologer/actions)
+[![CodeQL](https://github.com/ltpitt/java-spring-critter-cronologer/workflows/CodeQL/badge.svg)](https://github.com/ltpitt/java-spring-critter-cronologer/actions?query=workflow%3ACodeQL)
 [![GitHub Issues](https://img.shields.io/github/issues-raw/ltpitt/java-spring-critter-cronologer)](https://github.com/ltpitt/java-spring-critter-cronologer/issues)
 [![Total Commits](https://img.shields.io/github/last-commit/ltpitt/java-spring-critter-cronologer)](https://github.com/ltpitt/java-spring-critter-cronologer/commits)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/4w/ltpitt/java-spring-critter-cronologer?foo=bar)](https://github.com/ltpitt/java-spring-critter-cronologer/commits)
